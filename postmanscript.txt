@@ -1,0 +1,55 @@
+// Assertion
+const json = pm.response.json();
+pm.test("Working on Multiple Records ", function(){
+   
+    const firstRecord = json["records"][0];
+    const name = firstRecord["name"];
+    const email = firstRecord["email"];
+    pm.expect(name).to.equal("Vidit Gulyani");
+     pm.expect(email).to.equal("vidit@gmail.com");
+     pm.expect(firstRecord).to.have.property("phone");
+});
+
+pm.test("Working on Multiple Records ", function(){
+    
+    const allRecords = json["records"];
+    // for(let i = 0; i<allRecords.length; i++){
+    //     console.log(allRecords[i].name);
+    // }
+    console.log("For Of");
+    for(let record of allRecords){
+        expect(record.name).to.equal("Amit");
+        console.log(record.name);
+    }
+});
+
+
+// Add 
+// Assertions
+
+// var a = 100;
+// console.log("A is ",a);
+// so pm is an object provided by post man (request, response, postman env)
+// test is a function , use to write testcases.
+//pm.test(<English of Test>, function callback)
+// function callback is an Anonymous function
+pm.test("Checking We r on QCT Env ", function(){
+    
+    console.log(pm.environment.name)
+    pm.expect(pm.environment.name).to.equal("QCT");
+});
+pm.test("Status Code is 200 or 201", function(){
+   pm.expect(pm.response.code).to.be.oneOf([200,201]);
+});
+pm.test("check the record is added successfully", function(){
+    const json = pm.response.json();
+    // result is text
+    //const textResponse = pm.response.text();
+    console.log("Json is ",json);
+    console.log("Message type ",typeof json.message);
+    
+    pm.expect(json.message).to.be.a('string');
+    pm.expect(json.message.length).to.have.greaterThan(4);
+});
+
+
