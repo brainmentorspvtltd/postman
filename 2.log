@@ -1,0 +1,40 @@
+var emp = {id:101,name:'Amit'};
+undefined
+emp.id;
+101
+emp["id"]
+101
+emp.1=true;
+VM165:1 Uncaught SyntaxError: Unexpected number
+var emp = {id:101,name:'Amit', 1:true, 2:true};
+undefined
+emp;
+{1: true, 2: true, id: 101, name: 'Amit'}
+emp.id;
+101
+emp.1;
+VM261:1 Uncaught SyntaxError: Unexpected number
+emp[1]
+true
+emp[3]=false;
+false
+emp;
+{1: true, 2: true, 3: false, id: 101, name: 'Amit'}
+emp["country code"]="IN"
+'IN'
+emp.a b = 445
+VM443:1 Uncaught SyntaxError: Unexpected identifier
+emp.country code;
+VM488:1 Uncaught SyntaxError: Unexpected identifier
+emp."country code";
+VM494:1 Uncaught SyntaxError: Unexpected string
+emp["country code"]
+'IN'
+emp;
+{1: true, 2: true, 3: false, id: 101, name: 'Amit', country code: 'IN'}
+var key = "id";
+undefined
+emp.key;
+undefined
+emp[key];
+101

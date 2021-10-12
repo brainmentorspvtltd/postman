@@ -1,0 +1,47 @@
+function show(a,b){
+    return a + b;
+}
+undefined
+show(10,20);
+30
+show("Amit","Srivastava");
+'AmitSrivastava'
+show();
+NaN
+function show(a=0,b=0){
+    return a + b;
+}
+undefined
+show();
+0
+show(100);
+100
+var e = function(){
+    console.log(" i am a function expression or Anonymous function");
+}
+undefined
+e;
+ƒ (){
+    console.log(" i am a function expression or Anonymous function");
+}
+typeof e;
+'function'
+e();
+VM453:2  i am a function expression or Anonymous function
+undefined
+var y = (a,b)=>a+b;
+undefined
+y;
+(a,b)=>a+b
+typeof y;
+'function'
+y(100,200);
+300
+var y = (a,b)=>{
+console.log(" A is ",a," and b is ",b);
+return a+b;
+}
+undefined
+y(10,2);
+VM689:2  A is  10  and b is  2
+12

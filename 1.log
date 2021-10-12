@@ -1,0 +1,271 @@
+var a;
+undefined
+a;
+undefined
+typeof a;
+'undefined'
+a=10;
+10
+a;
+10
+typeof a;
+'number'
+a=10000000;
+10000000
+typeof a;
+'number'
+a=1;
+1
+typeof a;
+'number'
+a=90.20;
+90.2
+typeof a;
+'number'
+a=10/0;
+Infinity
+typeof a;
+'number'
+a=10;
+10
+var b = "20";
+undefined
+typeof b;
+'string'
+typeof a;
+'number'
+a + b;
+'1020'
+a-b
+-10
+"Amit "+ "Srivastava"
+'Amit Srivastava'
+10 + 10
+20
+10 - 10
+0
+10 - "10"
+0
+"Amit" - "Srivastava"
+NaN
+typeof NaN
+'number'
+var c = 10 - "Amit";
+undefined
+c;
+NaN
+isNaN(c);
+true
+isNaN(c)?0:c 
+0
+c =100;
+100
+isNaN(c)
+false
+isNaN(c)?0:c 
+100
+c = 100/0;
+Infinity
+isFinite(c);
+false
+c = 10;
+10
+isFinite(c);
+true
+c = 100/0;
+Infinity
+isFinite(c)?c:0
+0
+a=10;
+10
+b="10"
+'10'
+a + b
+'1010'
+a + parseInt(b);
+20
+b = "100.20";
+'100.20'
+a + parseFloat(b)
+110.2
+var name ="Amit";
+undefined
+typeof name;
+'string'
+name = 'Amit';
+'Amit'
+typeof name;
+'string'
+name= 'A';
+'A'
+typeof name;
+'string'
+name = `gdfjkkldjfjkdfglhjgdlk
+gjdfklhjfdjghfdjkghfk
+hgdsjkhgjkfhgfjk`
+'gdfjkkldjfjkdfglhjgdlk\ngjdfklhjfdjghfdjkghfk\nhgdsjkhgjkfhgfjk'
+typeof name;
+'string'
+a=10;
+10
+b = 20;
+20
+c = a + b;
+30
+console.log("A is "+a+" B is "+b+" C is "+c);
+VM1591:1 A is 10 B is 20 C is 30
+undefined
+console.log(`A is ${a} B is ${b} C is ${c}`);
+VM1695:1 A is 10 B is 20 C is 30
+undefined
+console.log("A is ",a,"B is ",b,"C is ",c);
+VM1814:1 A is  10 B is  20 C is  30
+undefined
+var att = true;
+undefined
+typeof att;
+'boolean'
+true + true
+2
+100 + true;
+101
+100 + true - false;
+101
+true - false
+1
+true + "Hello"
+'trueHello'
+var x = 575348764897684576475698475896798677498679485;
+undefined
+typeof x;
+'number'
+x = x * 1000;
+5.753487648976846e+47
+x = Number.MAX_SAFE_INTEGER;
+9007199254740991
+x++
+9007199254740991
+x;
+9007199254740992
+++x;
+9007199254740992
+++x;
+9007199254740992
+++x;
+9007199254740992
+x;
+9007199254740992
+typeof x;
+'number'
+var z = 9007199254740992n;
+undefined
+typeof z;
+'bigint'
+z = z + 4343443223;
+VM2384:1 Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+    at <anonymous>:1:7
+(anonymous) @ VM2384:1
+z = z + 4343443223n;
+9007203598184215n
+z;
+9007203598184215n
+z = BigInt("432434543656576576576576575676576576575")
+432434543656576576576576575676576576575n
+typeof z;
+'bigint'
+z;
+432434543656576576576576575676576576575n
+z = z + 4353n + BigInt("42343242767")
+432434543656576576576576575718919823695n
+z;
+432434543656576576576576575718919823695n
+var prices = [100,200,900,1000];
+undefined
+typeof prices;
+'object'
+prices[1]
+200
+prices[0]
+100
+prices = null;
+null
+prices[0]
+VM2834:1 Uncaught TypeError: Cannot read properties of null (reading '0')
+    at <anonymous>:1:7
+(anonymous) @ VM2834:1
+prices;
+null
+typeof prices;
+'object'
+var prices = [100,200,900,1000];
+undefined
+var emp = {};
+undefined
+typeof emp;
+'object'
+emp;
+{}
+emp.id = 1001;
+1001
+emp.name = 'Amit';
+'Amit'
+emp;
+{id: 1001, name: 'Amit'}
+emp.salary = 5555;
+5555
+emp;
+{id: 1001, name: 'Amit', salary: 5555}
+delete emp.salary;
+true
+emp;
+{id: 1001, name: 'Amit'}
+emp instanceof Object;
+true
+typeof Object;
+'function'
+var arr = [10,20,30,40];
+undefined
+arr instanceof Object;
+true
+arr instanceof Array
+true
+emp;
+{id: 1001, name: 'Amit'}
+arr;
+(4) [10, 20, 30, 40]
+emp instanceof Array;
+false
+emp = {id : 1001 , name:'Amit'};
+{id: 1001, name: 'Amit'}
+const obj = {};
+undefined
+const MAX = 100;
+undefined
+MAX++;
+VM3612:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:4
+(anonymous) @ VM3612:1
+MAX = 200;
+VM3638:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:5
+(anonymous) @ VM3638:1
+obj.id =1001
+1001
+obj.name = 'Amit';
+'Amit'
+obj;
+{id: 1001, name: 'Amit'}
+obj = {};
+VM3755:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:5
+(anonymous) @ VM3755:1
+obj.marks = [1000, 2000,3000];
+(3) [1000, 2000, 3000]
+obj;
+{id: 1001, name: 'Amit', marks: Array(3)}
+obj.address = [{city:'Delhi',pin:110007}, {city:'Mumbai':pin:220007}];
+VM3943:1 Uncaught SyntaxError: Unexpected token ':'
+obj.address = [{city:'Delhi',pin:110007}, {city:'Mumbai',pin:220007}];
+(2) [{…}, {…}]
+obj;
+{id: 1001, name: 'Amit', marks: Array(3), address: Array(2)}address: Array(2)0: {city: 'Delhi', pin: 110007}1: {city: 'Mumbai', pin: 220007}length: 2[[Prototype]]: Array(0)id: 1001marks: (3) [1000, 2000, 3000]name: "Amit"[[Prototype]]: Object

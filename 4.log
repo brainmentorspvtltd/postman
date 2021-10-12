@@ -1,0 +1,20 @@
+var emp = {id:101,name:'Amit'};
+undefined
+var json = JSON.stringify(emp);
+undefined
+json;
+'{"id":101,"name":"Amit"}'
+typeof json;
+'string'
+var y = JSON.parse(json);
+undefined
+y;
+{id: 101, name: 'Amit'}
+typeof y;
+'object'
+y.id;
+101
+json;
+'{"id":101,"name":"Amit"}'
+json.id;
+undefined
