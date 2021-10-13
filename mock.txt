@@ -1,0 +1,81 @@
+// pm.test("100 Records", function(){
+//     const json = pm.response.json(); // get the records as a response
+//     const users = json['records'];
+
+//     for(let user of users){
+//         let date = getDateFromTimeStamp(user.doj);
+//         let basicSalary = user.basicSalary;
+//         let bonus  = basicSalary * 0.10;
+//         pm.expect(bonus).to.be.equal(user.bonus); // functional testing
+//     }
+// });
+
+
+pm.test("get the response data and share with other", function(){
+    const json = pm.response.json(); 
+    const users = json['records'];
+   let name  =  users[0].name; // we want to share this name
+   name = name.toUpperCase();
+   console.log("After Upper Case ", name);
+   pm.collectionVariables.set("sharename", name);
+   postman.setNextRequest("anotherrequest");
+   
+   console.log("After Calling Another Request", pm.collectionVariables.get("sharename"));
+
+});
+/*
+pm.test("total of all salary", function(){
+     const json = pm.response.json(); // get the records as a response
+    const users = json['records'];
+    let total = 0;
+    for(let user of users){
+        total = total + user.salary ;
+    }
+    pm.expect(total).to.equal(10000);
+})
+
+function getDateFromTimeStamp(timeStamp){
+    var date;
+    date = timeStamp.split(" ")[0];
+    return date;
+
+}
+
+
+
+pm.test("All Validations", function(){
+    console.log("Validate.....");
+    try{
+    const requestJson = pm.request.body;
+    console.log('Type is ', typeof requestJson);
+    console.log("BODY is ", requestJson);
+    console.log('Request Body is ', requestJson['basicsalary']);
+    let requestSalary = pm.collectionVariables.get('sal');
+    requestSalary = parseInt(requestSalary);
+    let bonus  = requestSalary * 0.10;
+    console.log('####################Request JSON is ', requestSalary);
+    }
+    catch(err){
+        console.log('Error ', err);
+    }
+     
+    const json = pm.response.json();
+    const userObject = json['records'][0]; //single record
+    const total = json['records'].length;
+    pm.expect(userObject.phone).to.match(/^\d{4}$/); // Pattern Matching
+    pm.expect(userObject.name.startsWith("A")).to.be.true;
+     pm.expect(userObject.name.endsWith("Kumar")).to.be.true;
+     pm.expect(userObject.salary).to.be.greaterThan(9000);
+     pm.expect(userObject.salary).to.be.lessThan(9000);
+     pm.expect(userObject.salary).to.be.lte(9000);
+     pm.expect(userObject.salary).to.be.gte(9000);
+     pm.expect(total).to.equal(2);
+     pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');
+     pm.expect(pm.response.responseTime).to.be.below(2000);
+
+     // functional test
+     // I need a salary here (Salary is actual in request parameter)
+     // so i need to access the request parameter
+     
+
+});*/
