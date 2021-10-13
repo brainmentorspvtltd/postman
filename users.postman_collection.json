@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "67302ca7-2768-4ddb-b422-0adcbe8507e3",
+		"name": "users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getusers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://raw.githubusercontent.com/shashiamitsrivastava/ws/main/users.json",
+					"protocol": "https",
+					"host": [
+						"raw",
+						"githubusercontent",
+						"com"
+					],
+					"path": [
+						"shashiamitsrivastava",
+						"ws",
+						"main",
+						"users.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPersons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion",
+							"const json = pm.response.json();",
+							"pm.test(\"Working on Multiple Records \", function(){",
+							"   ",
+							"    const firstRecord = json[\"records\"][0];",
+							"    const name = firstRecord[\"name\"];",
+							"    const email = firstRecord[\"email\"];",
+							"    pm.expect(name).to.equal(\"Vidit Gulyani\");",
+							"     pm.expect(email).to.equal(\"vidit@gmail.com\");",
+							"     pm.expect(firstRecord).to.have.property(\"phone\");",
+							"});",
+							"",
+							"pm.test(\"Working on Multiple Records \", function(){",
+							"    ",
+							"    const allRecords = json[\"records\"];",
+							"    // for(let i = 0; i<allRecords.length; i++){",
+							"    //     console.log(allRecords[i].name);",
+							"    // }",
+							"    console.log(\"For Of\");",
+							"    for(let record of allRecords){",
+							"        console.log(record.name);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/get",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPerson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertions",
+							"",
+							"// var a = 100;",
+							"// console.log(\"A is \",a);",
+							"// so pm is an object provided by post man (request, response, postman env)",
+							"// test is a function , use to write testcases.",
+							"//pm.test(<English of Test>, function callback)",
+							"// function callback is an Anonymous function",
+							"",
+							"",
+							"",
+							"pm.test(\"Checking We r on QCT Env \", function(){",
+							"    ",
+							"    console.log(pm.environment.name)",
+							"    pm.expect(pm.environment.name).to.equal(\"QCT\");",
+							"});",
+							"pm.test(\"Status Code is 200 or 201\", function(){",
+							"   pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"check the record is added successfully\", function(){",
+							"    const json = pm.response.json();",
+							"    // result is text",
+							"    //const textResponse = pm.response.text();",
+							"    console.log(\"Json is \",json);",
+							"    console.log(\"Message type \",typeof json.message);",
+							"    ",
+							"    pm.expect(json.message).to.be.a('string');",
+							"    pm.expect(json.message.length).to.have.greaterThan(4);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Data Prepare"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AAAA2324324",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"phone\":\"1234567899\",\n    \"email\":\"{{$randomEmail}}\",\n    \"city\":\"{{$randomCity}}\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/add",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPersonWithPhoneValidate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Amit Srivastava\",\n    \"phone\":\"6\",\n    \"email\":\"amit@yahoo.com\",\n    \"city\":\"Delhi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/add",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePerson",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/delete?name=Amit",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Amit"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addLocal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "readLocal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "ordersLocal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "paymentLocal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "mocky",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"All Validations\", function(){",
+							"    console.log(\"Validate.....\");",
+							"    try{",
+							"    const requestJson = pm.request.body;",
+							"    console.log('Type is ', typeof requestJson);",
+							"    console.log(\"BODY is \", requestJson);",
+							"    console.log('Request Body is ', requestJson['basicsalary']);",
+							"    const requestSalary = pm.collectionVariables.get('sal');",
+							"    console.log('####################Request JSON is ', requestSalary);",
+							"    }",
+							"    catch(err){",
+							"        console.log('Error ', err);",
+							"    }",
+							"     ",
+							"    const json = pm.response.json();",
+							"    const userObject = json['records'][0];",
+							"    const total = json['records'].length;",
+							"    pm.expect(userObject.phone).to.match(/^\\d{4}$/); // Pattern Matching",
+							"    pm.expect(userObject.name.startsWith(\"A\")).to.be.true;",
+							"     pm.expect(userObject.name.endsWith(\"Kumar\")).to.be.true;",
+							"     pm.expect(total).to.equal(2);",
+							"",
+							"     // functional test",
+							"     // I need a salary here (Salary is actual in request parameter)",
+							"     // so i need to access the request parameter",
+							"     ",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "basicsalary",
+							"value": "64565",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://run.mocky.io/v3/4bd86456-7627-4c38-a10b-0700e91c1cfa?salary={{sal}}",
+					"protocol": "https",
+					"host": [
+						"run",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v3",
+						"4bd86456-7627-4c38-a10b-0700e91c1cfa"
+					],
+					"query": [
+						{
+							"key": "salary",
+							"value": "{{sal}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:2222"
+		},
+		{
+			"key": "sal",
+			"value": "9000"
+		}
+	]
+}
