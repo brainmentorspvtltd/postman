@@ -1,0 +1,1 @@
+newman run https://www.getpostman.com/collections/2ab549303cb831585cf3 -d /Users/amitsrivastava/Documents/datanew.csv -g /Users/amitsrivastava/Documents/QCT.postman_environment.json -r htmlextra
