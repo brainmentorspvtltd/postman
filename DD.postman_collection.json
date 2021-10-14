@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "70c2821f-dbab-4e61-a647-5482ff886ace",
+		"name": "DD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddPerson",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let name = pm.iterationData.get(\"name\"); // read the data from each row",
+							"let phone = pm.iterationData.get(\"phone\");",
+							"let email = pm.iterationData.get(\"email\");",
+							"let city = pm.iterationData.get(\"city\"); // Local Variables",
+							"pm.collectionVariables.set(\"name\",name); // set local var value to the collection var",
+							"pm.collectionVariables.set(\"phone\",name);",
+							"pm.collectionVariables.set(\"email\",name);",
+							"pm.collectionVariables.set(\"city\",name);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Name not blank\", function(){",
+							"    const json = pm.response.json();",
+							"    console.log('JSON is ',json);",
+							"    pm.expect(json.message.length).to.have.greaterThan(1);",
+							"",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"{{name}}\",\n    \"phone\":\"{{phone}}\",\n    \"email\":\"{{email}}\",\n    \"city\":\"{{city}}\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/add",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "phone",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "city",
+			"value": ""
+		}
+	]
+}

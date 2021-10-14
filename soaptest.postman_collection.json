@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "53f2478a-cb36-40b5-a06b-4704d57fbeeb",
+		"name": "soaptest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ctof",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"const schema = {",
+							"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"soap:Envelope\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"$\": {",
+							"          \"type\": \"object\",",
+							"          \"properties\": {",
+							"            \"xmlns:soap\": {",
+							"              \"type\": \"string\"",
+							"            }",
+							"          },",
+							"          \"required\": [",
+							"            \"xmlns:soap\"",
+							"          ]",
+							"        },",
+							"        \"soap:Body\": {",
+							"          \"type\": \"object\",",
+							"          \"properties\": {",
+							"            \"m:CelsiusToFahrenheitResponse\": {",
+							"              \"type\": \"object\",",
+							"              \"properties\": {",
+							"                \"$\": {",
+							"                  \"type\": \"object\",",
+							"                  \"properties\": {",
+							"                    \"xmlns:m\": {",
+							"                      \"type\": \"string\"",
+							"                    }",
+							"                  },",
+							"                  \"required\": [",
+							"                    \"xmlns:m\"",
+							"                  ]",
+							"                },",
+							"                \"m:CelsiusToFahrenheitResult\": {",
+							"                  \"type\": \"string\"",
+							"                }",
+							"              },",
+							"              \"required\": [",
+							"                \"$\",",
+							"                \"m:CelsiusToFahrenheitResult\"",
+							"              ]",
+							"            }",
+							"          },",
+							"          \"required\": [",
+							"            \"m:CelsiusToFahrenheitResponse\"",
+							"          ]",
+							"        }",
+							"      },",
+							"      \"required\": [",
+							"        \"$\",",
+							"        \"soap:Body\"",
+							"      ]",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"soap:Envelope\"",
+							"  ]",
+							"}",
+							"",
+							"pm.test(\"validate the result\", function(){",
+							"   const res =  pm.response.text();",
+							"   console.log('Response is ',res);",
+							"  // console.log(xml2Json);",
+							"   const json = xml2Json(res);",
+							"   console.log(JSON.stringify(json));",
+							"   //JSON.stringify/ JSON.parse",
+							"   //console.log('JSON is ', json);",
+							"   const result = json['soap:Envelope']['soap:Body']['m:CelsiusToFahrenheitResponse']['m:CelsiusToFahrenheitResult'];",
+							"   console.log('Result is ', result);",
+							"   ",
+							"   pm.expect(json).to.have.jsonSchema(schema);",
+							"   pm.expect(result).to.equals(\"68\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/soap+xml; charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <CelsiusToFahrenheit xmlns=\"http://webservices.daehosting.com/temperature\">\n      <nCelsius>20</nCelsius>\n    </CelsiusToFahrenheit>\n  </soap12:Body>\n</soap12:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://webservices.daehosting.com/services/TemperatureConversions.wso?op=CelsiusToFahrenheit",
+					"protocol": "http",
+					"host": [
+						"webservices",
+						"daehosting",
+						"com"
+					],
+					"path": [
+						"services",
+						"TemperatureConversions.wso"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "CelsiusToFahrenheit"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
